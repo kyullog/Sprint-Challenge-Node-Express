@@ -25,4 +25,26 @@ projectRouter.get("/:id", async (req, res) => {
   }
 });
 
+projectRouter.post("/", async (req, res) => {
+  try {
+    if (!req.body.name || !req.body.description) {
+      res.status(400).json({
+        error: "Please provide a valid name and description for project"
+      });
+    } else {
+      const newProject = req.body;
+      const success = await db.insert(newProject);
+      if (success) {
+        res.status(201).json(success);
+      } else {
+        res.status(400).json({ error: "Please check your request fields" });
+      }
+    }
+  } catch {
+    res
+      .status(500)
+      .json({ error: "There was a proplem creating your project" });
+  }
+});
+
 module.exports = projectRouter;
