@@ -13,4 +13,16 @@ projectRouter.get("/", async (req, res) => {
   }
 });
 
+projectRouter.get("/:id", async (req, res) => {
+  const id = req.params.id;
+  try {
+    const project = await db.get(id);
+    res.status(200).json(project);
+  } catch {
+    res
+      .status(500)
+      .json({ error: "There was a problem retrieving the project" });
+  }
+});
+
 module.exports = projectRouter;
