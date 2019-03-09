@@ -25,6 +25,27 @@ projectRouter.get("/:id", async (req, res) => {
   }
 });
 
+projectRouter.get("/:id/actions", async (req, res) => {
+  const id = req.params.id;
+  try {
+    const actions = await db.getProjectActions(id);
+    if (actions.length) {
+      res.status(200).json(actions);
+    } else {
+      res
+        .status(404)
+        .json({
+          error:
+            "Project does not exist, or no actions are associated with project"
+        });
+    }
+  } catch {
+    res
+      .status(500)
+      .json({ error: "There was a problem retrieving those actions" });
+  }
+});
+
 projectRouter.post("/", async (req, res) => {
   try {
     if (!req.body.name || !req.body.description) {
