@@ -30,6 +30,8 @@ Two parts of Express that we learned about this week are middleware and routers.
 
 - [ ] Describe Middleware?
 
+Middleware is a function that can be applied to a server. It will take in the request, and either provide a response, or perform some action on that request, and then send it on to the next piece of middleware in the stack.
+
 - [ ] Describe a Resource?
 
 - [ ] What can the API return to help clients know if a request was successful?
