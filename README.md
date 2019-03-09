@@ -24,7 +24,9 @@ In this challenge, create a web API around the following resources: `Projects` a
 
 Demonstrate your understanding of this Sprint's concepts by answering the following free-form questions. Edit this document to include your answers after each question. Make sure to leave a blank line above and below your answer so it is clear and easy to read by your project manager.
 
-- [ ] Mention two parts of Express that you learned about this week.
+- [x] Mention two parts of Express that you learned about this week.
+
+Two parts of Express that we learned about this week are middleware and routers. Middleware is covered in the next question, but routers allow the developer to organize their resources by common endpoints structures.
 
 - [ ] Describe Middleware?
 
