@@ -27,4 +27,22 @@ actionRouter.get("/:id", async (req, res) => {
   }
 });
 
+actionRouter.post("/", async (req, res) => {
+  if (!req.body.project_id || !req.body.description || !req.body.notes) {
+    res.status(400).json({ error: "Please include all required fields" });
+  } else {
+    const newAction = req.body;
+    try {
+      const success = await db.insert(newAction);
+      if (success) {
+        res.status(201).json(success);
+      } else {
+        res.status(400).json({ error: "Please provide a valid project id" });
+      }
+    } catch {
+      res.status(500).json({ error: "There was a problem adding the action" });
+    }
+  }
+});
+
 module.exports = actionRouter;
