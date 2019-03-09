@@ -28,11 +28,13 @@ Demonstrate your understanding of this Sprint's concepts by answering the follow
 
 Two parts of Express that we learned about this week are middleware and routers. Middleware is covered in the next question, but routers allow the developer to organize their resources by common endpoints structures.
 
-- [ ] Describe Middleware?
+- [x] Describe Middleware?
 
 Middleware is a function that can be applied to a server. It will take in the request, and either provide a response, or perform some action on that request, and then send it on to the next piece of middleware in the stack.
 
-- [ ] Describe a Resource?
+- [x] Describe a Resource?
+
+A resource is a unique part of a server's API that is defined by it's URL endpoint. The actions that can be preformed with these resources is determined by the types of HTTP methods they accept.
 
 - [ ] What can the API return to help clients know if a request was successful?
 
