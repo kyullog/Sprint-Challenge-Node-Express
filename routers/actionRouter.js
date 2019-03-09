@@ -23,7 +23,7 @@ actionRouter.get("/:id", async (req, res) => {
       res.status(404).json({ error: "Actions could not be found" });
     }
   } catch {
-    res.status(500).json({ error: "There was a problem retrieving actions" });
+    res.status(500).json({ error: "There was a problem retrieving action" });
   }
 });
 
@@ -63,6 +63,16 @@ actionRouter.put("/:id", async (req, res) => {
         .status(500)
         .json({ error: "There was a problem editing that action" });
     }
+  }
+});
+
+actionRouter.delete("/:id", async (req, res) => {
+  const id = req.params.id;
+  try {
+    const deleted = await db.remove(id);
+    res.status(200).json({ message: "Action was successfully deleted" });
+  } catch {
+    res.status(500).json({ error: "There was a problem deleting the action" });
   }
 });
 
