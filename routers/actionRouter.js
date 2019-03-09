@@ -34,13 +34,34 @@ actionRouter.post("/", async (req, res) => {
     const newAction = req.body;
     try {
       const success = await db.insert(newAction);
-      if (success) {
-        res.status(201).json(success);
+      if (added) {
+        res.status(201).json(added);
       } else {
         res.status(400).json({ error: "Please provide a valid project id" });
       }
     } catch {
       res.status(500).json({ error: "There was a problem adding the action" });
+    }
+  }
+});
+
+actionRouter.put("/:id", async (req, res) => {
+  const id = req.params.id;
+  if (!req.body.project_id || !req.body.description || !req.body.notes) {
+    res.status(400).json({ error: "Please include all required fields" });
+  } else {
+    const edit = req.body;
+    try {
+      const edited = await db.update(id, edit);
+      if (edited) {
+        res.status(201).json(edited);
+      } else {
+        res.status(400).json({ error: "Action could not be added to project" });
+      }
+    } catch {
+      res
+        .status(500)
+        .json({ error: "There was a problem editing that action" });
     }
   }
 });
