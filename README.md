@@ -40,7 +40,9 @@ A resource is a unique part of a server's API that is defined by it's URL endpoi
 
 An API can return an HTTP status code to help clients know if a request was successful, or unsuccessful.
 
-- [ ] How can we partition our application into sub-applications?
+- [x] How can we partition our application into sub-applications?
+
+Routers can be used to partition out resources by common endpoints. These can all be kept in separate files, and then linked to the server with middleware.
 
 ## Project Setup
 
