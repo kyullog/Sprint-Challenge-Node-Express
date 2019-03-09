@@ -36,7 +36,9 @@ Middleware is a function that can be applied to a server. It will take in the re
 
 A resource is a unique part of a server's API that is defined by it's URL endpoint. The actions that can be preformed with these resources is determined by the types of HTTP methods they accept.
 
-- [ ] What can the API return to help clients know if a request was successful?
+- [x] What can the API return to help clients know if a request was successful?
+
+An API can return an HTTP status code to help clients know if a request was successful, or unsuccessful.
 
 - [ ] How can we partition our application into sub-applications?
 
