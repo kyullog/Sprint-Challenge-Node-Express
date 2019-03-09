@@ -47,4 +47,19 @@ projectRouter.post("/", async (req, res) => {
   }
 });
 
+projectRouter.put("/:id", async (req, res) => {
+  const id = req.params.id;
+  const editProject = req.body;
+  try {
+    const edited = await db.update(id, editProject);
+    if (edited) {
+      res.status(201).json(edited);
+    } else {
+      res.status(400).json({ error: "Please provide a valid id" });
+    }
+  } catch (err) {
+    res.status(500).json({ error: "There was a problem editing the project" });
+  }
+});
+
 module.exports = projectRouter;
