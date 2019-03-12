@@ -6,10 +6,8 @@ actionRouter.get("/", async (req, res) => {
   try {
     const actions = await db.get();
     res.status(200).json({ actions });
-  } catch {
-    res
-      .status(500)
-      .json({ error: "There was a problem retrieving the actions" });
+  } catch (error) {
+    res.status(500).json({ err: "There was a problem retrieving the actions" });
   }
 });
 
@@ -22,8 +20,8 @@ actionRouter.get("/:id", async (req, res) => {
     } else {
       res.status(404).json({ error: "Actions could not be found" });
     }
-  } catch {
-    res.status(500).json({ error: "There was a problem retrieving action" });
+  } catch (error) {
+    res.status(500).json({ err: "There was a problem retrieving action" });
   }
 });
 
@@ -34,13 +32,13 @@ actionRouter.post("/", async (req, res) => {
     const newAction = req.body;
     try {
       const success = await db.insert(newAction);
-      if (added) {
-        res.status(201).json(added);
+      if (success) {
+        res.status(201).json(success);
       } else {
         res.status(400).json({ error: "Please provide a valid project id" });
       }
-    } catch {
-      res.status(500).json({ error: "There was a problem adding the action" });
+    } catch (error) {
+      res.status(500).json({ err: "There was a problem adding the action" });
     }
   }
 });
@@ -58,10 +56,8 @@ actionRouter.put("/:id", async (req, res) => {
       } else {
         res.status(400).json({ error: "Action could not be added to project" });
       }
-    } catch {
-      res
-        .status(500)
-        .json({ error: "There was a problem editing that action" });
+    } catch (error) {
+      res.status(500).json({ err: "There was a problem editing that action" });
     }
   }
 });
@@ -71,8 +67,8 @@ actionRouter.delete("/:id", async (req, res) => {
   try {
     const deleted = await db.remove(id);
     res.status(200).json({ message: "Action was successfully deleted" });
-  } catch {
-    res.status(500).json({ error: "There was a problem deleting the action" });
+  } catch (error) {
+    res.status(500).json({ err: "There was a problem deleting the action" });
   }
 });
 

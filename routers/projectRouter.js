@@ -6,10 +6,10 @@ projectRouter.get("/", async (req, res) => {
   try {
     const projects = await db.get();
     res.status(200).json(projects);
-  } catch {
+  } catch (error) {
     res
       .status(500)
-      .json({ error: "There was a problem retrieving the projects" });
+      .json({ err: "There was a problem retrieving the projects" });
   }
 });
 
@@ -18,10 +18,8 @@ projectRouter.get("/:id", async (req, res) => {
   try {
     const project = await db.get(id);
     res.status(200).json(project);
-  } catch {
-    res
-      .status(500)
-      .json({ error: "There was a problem retrieving the project" });
+  } catch (error) {
+    res.status(500).json({ err: "There was a problem retrieving the project" });
   }
 });
 
@@ -32,14 +30,12 @@ projectRouter.get("/:id/actions", async (req, res) => {
     if (actions.length) {
       res.status(200).json(actions);
     } else {
-      res
-        .status(404)
-        .json({
-          error:
-            "Project does not exist, or no actions are associated with project"
-        });
+      res.status(404).json({
+        error:
+          "Project does not exist, or no actions are associated with project"
+      });
     }
-  } catch {
+  } catch (error) {
     res
       .status(500)
       .json({ error: "There was a problem retrieving those actions" });
@@ -61,7 +57,7 @@ projectRouter.post("/", async (req, res) => {
         res.status(400).json({ error: "Please check your request fields" });
       }
     }
-  } catch {
+  } catch (error) {
     res
       .status(500)
       .json({ error: "There was a proplem creating your project" });
@@ -78,7 +74,7 @@ projectRouter.put("/:id", async (req, res) => {
     } else {
       res.status(400).json({ error: "Please provide a valid id" });
     }
-  } catch (err) {
+  } catch (error) {
     res.status(500).json({ error: "There was a problem editing the project" });
   }
 });
@@ -92,7 +88,7 @@ projectRouter.delete("/:id", async (req, res) => {
     } else {
       res.status(400).json({ error: "Please provide a valid project id" });
     }
-  } catch {
+  } catch (error) {
     res.status(500).json({ error: "There was a problem deleting the project" });
   }
 });
